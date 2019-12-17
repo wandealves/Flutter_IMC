@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
+import 'package:imc/blocs/imc.bloc.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  var bloc = new ImcBloc();
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -18,30 +21,34 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             child: CupertinoTextField(
               placeholder: "Altura (cm)",
+              controller: bloc.heightCtrl,
               keyboardType: TextInputType.number,
             ),
           ),
-           Padding(
+          Padding(
             padding: EdgeInsets.all(20),
             child: CupertinoTextField(
               placeholder: "Peso (kg)",
+              controller: bloc.weightCtrl,
               keyboardType: TextInputType.number,
             ),
           ),
-           Padding(
+          Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "Você está fora de forma",
+              bloc.result,
               textAlign: TextAlign.center,
             ),
           ),
-           Padding(
+          Padding(
             padding: EdgeInsets.all(20),
             child: CupertinoButton.filled(
-              child: Text(
-                "Calcular"
-              ),
-              onPressed: () {},
+              child: Text("Calcular"),
+              onPressed: () {
+                setState(() {
+                  bloc.calculate();
+                });
+              },
             ),
           ),
         ],
