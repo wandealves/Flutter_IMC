@@ -1,4 +1,4 @@
-package com.example.imc
+package br.com.bluewolf.imc
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
